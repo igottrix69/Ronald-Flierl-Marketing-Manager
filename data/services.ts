@@ -1,0 +1,61 @@
+import type { LucideIcon } from "lucide-react";
+import {
+  Target,
+  Filter,
+  LayoutTemplate,
+  Mail,
+  Bot,
+  Camera,
+} from "lucide-react";
+
+export type Service = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  tags: string[];
+};
+
+export const services: Service[] = [
+  {
+    title: "Meta Ads & Google Ads",
+    description:
+      "Paid acquisition across Meta and Google, managing five- and six-figure monthly budgets with relentless focus on ROAS, CPA and revenue.",
+    icon: Target,
+    tags: ["Paid Media", "ROAS", "CPA"],
+  },
+  {
+    title: "Lead Generation & Sales Funnels",
+    description:
+      "Custom, end-to-end funnels engineered to convert — from first touch to qualified, sales-ready lead.",
+    icon: Filter,
+    tags: ["Funnels", "Conversion", "Demand Gen"],
+  },
+  {
+    title: "Landing Page Strategy & Copywriting",
+    description:
+      "High-converting landing pages built on sharp copy, CRO principles and disciplined A/B testing.",
+    icon: LayoutTemplate,
+    tags: ["CRO", "Copywriting", "A/B Testing"],
+  },
+  {
+    title: "Email Marketing & List Growth",
+    description:
+      "Lifecycle campaigns, segmentation and subscriber growth — turning a list into a compounding revenue channel.",
+    icon: Mail,
+    tags: ["Lifecycle", "Segmentation", "Retention"],
+  },
+  {
+    title: "AI Workflow Engineering",
+    description:
+      "Bespoke AI automations for content, research and reporting. An early adopter since 2023, cutting manual overhead by 40%+.",
+    icon: Bot,
+    tags: ["Automation", "LLMs", "Reporting"],
+  },
+  {
+    title: "Real Estate Imagery & Video",
+    description:
+      "Professional real-estate photo and video content, drawn from years inside PNG's #1 property portal.",
+    icon: Camera,
+    tags: ["Photography", "Video", "Content"],
+  },
+];
