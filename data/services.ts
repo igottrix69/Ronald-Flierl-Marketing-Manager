@@ -5,7 +5,7 @@ import {
   LayoutTemplate,
   Mail,
   Bot,
-  Camera,
+  Clapperboard,
 } from "lucide-react";
 
 export type Service = {
@@ -13,6 +13,10 @@ export type Service = {
   description: string;
   icon: LucideIcon;
   tags: string[];
+  /** if set, the card links here and shows an open-in affordance */
+  href?: string;
+  /** subtly highlighted card */
+  featured?: boolean;
 };
 
 export const services: Service[] = [
@@ -52,10 +56,12 @@ export const services: Service[] = [
     tags: ["Automation", "LLMs", "Reporting"],
   },
   {
-    title: "Real Estate Imagery & Video",
+    title: "Real Estate Media",
     description:
-      "Professional real-estate photo and video content, drawn from years inside PNG's #1 property portal.",
-    icon: Camera,
-    tags: ["Photography", "Video", "Content"],
+      "Pro photo editing and 30–60s cinematic walkthroughs that make listings sell faster — sky replacement, window pull, decluttering and a 24–48hr turnaround.",
+    icon: Clapperboard,
+    tags: ["Photo Editing", "Walkthrough Video", "Listings"],
+    href: "/real-estate-media",
+    featured: true,
   },
 ];

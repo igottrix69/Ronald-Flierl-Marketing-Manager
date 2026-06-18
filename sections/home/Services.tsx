@@ -16,7 +16,7 @@ export function Services() {
               <br className="hidden sm:block" /> engineered for revenue.
             </>
           }
-          description="Six disciplines that compound — from the first ad impression to the qualified lead landing in your CRM."
+          description="Specialist disciplines that compound — from the first ad impression to the qualified lead landing in your CRM."
         />
 
         <RevealGroup
