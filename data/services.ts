@@ -26,6 +26,8 @@ export const services: Service[] = [
       "Paid acquisition across Meta and Google, managing five- and six-figure monthly budgets with relentless focus on ROAS, CPA and revenue.",
     icon: Target,
     tags: ["Paid Media", "ROAS", "CPA"],
+    href: "/ads-management",
+    featured: true,
   },
   {
     title: "Lead Generation & Sales Funnels",

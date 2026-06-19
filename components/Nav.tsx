@@ -44,7 +44,7 @@ export function Nav() {
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-1 lg:flex">
           {navLinks.map((link) => {
             const active =
               link.href === "/"
@@ -87,7 +87,7 @@ export function Nav() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-foreground md:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-foreground lg:hidden"
           >
             {open ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -102,7 +102,7 @@ export function Nav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="absolute inset-x-4 top-[72px] z-40 overflow-hidden rounded-3xl border border-line bg-background/95 p-3 shadow-card backdrop-blur-xl md:hidden"
+            className="absolute inset-x-4 top-[72px] z-40 overflow-hidden rounded-3xl border border-line bg-background/95 p-3 shadow-card backdrop-blur-xl lg:hidden"
           >
             <div className="flex flex-col">
               {navLinks.map((link) => (
