@@ -109,7 +109,10 @@ html.lenis body {
    ============================================================ */
 .mbp {
   position: relative;
-  width: min(88vw, 940px);
+  /* Capped so the whole laptop stays visible with room for overlays. The height
+     term reserves ~300px (nav + headline up top, toggle below) and converts the
+     remaining height to a width via the lid aspect ratio (1.539). */
+  width: min(92vw, 1280px, calc((100vh - 300px) * 1.539));
   transform-style: preserve-3d;
   will-change: transform;
 }

@@ -36,27 +36,35 @@ export function AdsManagementShowcase() {
     target: ref,
     offset: ["start start", "end end"],
   });
-  const staticProgress = useMotionValue(0.4);
+  // Static fallback sits at the held, fully-open frame (progress ≥ 0.6).
+  const staticProgress = useMotionValue(0.7);
   const progress = animate ? scrollYProgress : staticProgress;
 
-  // Overlay choreography (used only when animating)
-  const glowOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
-  const glowScale = useTransform(scrollYProgress, [0, 0.7], [0.8, 1.25]);
-  const topBarOpacity = useTransform(scrollYProgress, [0.74, 0.9], [0, 1]);
-  const topBarY = useTransform(scrollYProgress, [0.74, 0.9], [-20, 0]);
-  const toggleOpacity = useTransform(scrollYProgress, [0.58, 0.74], [0, 1]);
+  // Ambient glow builds while the laptop opens, then holds.
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.35], [0, 1]);
+  const glowScale = useTransform(scrollYProgress, [0, 0.6], [0.85, 1.05]);
+
+  // Scroll hint shows at the top, fades before the laptop finishes opening.
   const hintOpacity = useTransform(scrollYProgress, [0, 0.22, 0.36], [1, 1, 0]);
+
+  // Overlays land once the laptop is capped & held (≥ 0.6).
+  const headlineOpacity = useTransform(scrollYProgress, [0.6, 0.78], [0, 1]);
+  const headlineY = useTransform(scrollYProgress, [0.6, 0.78], [-20, 0]);
+  const ctaOpacity = useTransform(scrollYProgress, [0.64, 0.82], [0, 1]);
+  const ctaY = useTransform(scrollYProgress, [0.64, 0.82], [-20, 0]);
+  const toggleOpacity = useTransform(scrollYProgress, [0.6, 0.78], [0, 1]);
+  const toggleY = useTransform(scrollYProgress, [0.6, 0.78], [20, 0]);
 
   return (
     <section
       ref={ref}
-      style={{ height: animate ? "340vh" : "auto" }}
+      style={{ height: animate ? "300vh" : "auto" }}
       className="relative"
     >
       <div
         className={
           animate
-            ? "sticky top-0 flex h-screen items-center justify-center overflow-hidden"
+            ? "sticky top-0 flex h-screen items-center justify-center overflow-hidden pt-20"
             : "relative flex flex-col items-center justify-center px-5 py-24"
         }
       >
@@ -100,13 +108,14 @@ export function AdsManagementShowcase() {
           </MacBook>
         </div>
 
-        {/* End-state top bar: short headline + CTA (animate only) */}
+        {/* End-state overlays, anchored to the pinned stage (animate only) */}
         {animate && (
-          <motion.div
-            style={{ opacity: topBarOpacity, y: topBarY }}
-            className="absolute inset-x-0 top-0 z-30 flex items-start justify-between gap-4 bg-gradient-to-b from-background/85 to-transparent px-6 pb-16 pt-6 sm:px-10"
-          >
-            <div>
+          <>
+            {/* caption + headline — top-left, below the nav */}
+            <motion.div
+              style={{ opacity: headlineOpacity, y: headlineY }}
+              className="absolute left-6 top-[88px] z-30 sm:left-10"
+            >
               <span className="eyebrow">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                 Live ad dashboards
@@ -114,22 +123,30 @@ export function AdsManagementShowcase() {
               <h2 className="mt-2 max-w-md font-display text-2xl font-semibold tracking-tight sm:text-3xl">
                 Inside the accounts I run daily.
               </h2>
+            </motion.div>
+
+            {/* CTA — top-right, same row */}
+            <motion.div
+              style={{ opacity: ctaOpacity, y: ctaY }}
+              className="absolute right-6 top-[88px] z-30 sm:right-10"
+            >
+              <Button href="/about#contact" withArrow magnetic={false}>
+                Scale my ad account
+              </Button>
+            </motion.div>
+
+            {/* toggle — centred below the laptop. Outer flex centres it so the
+                framer y-transform doesn't clobber a translate-x. */}
+            <div className="absolute inset-x-0 bottom-10 z-30 flex justify-center">
+              <motion.div style={{ opacity: toggleOpacity, y: toggleY }}>
+                <AdsDashboardToggle active={active} onChange={setActive} />
+              </motion.div>
             </div>
-            <Button href="/about#contact" withArrow magnetic={false} className="shrink-0">
-              Scale my ad account
-            </Button>
-          </motion.div>
+          </>
         )}
 
-        {/* Toggle — pinned bottom-centre (animate) / below laptop (static) */}
-        {animate ? (
-          <motion.div
-            style={{ opacity: toggleOpacity }}
-            className="absolute bottom-8 left-1/2 z-30 -translate-x-1/2"
-          >
-            <AdsDashboardToggle active={active} onChange={setActive} />
-          </motion.div>
-        ) : (
+        {/* Static toggle + CTA (mobile / reduced-motion) */}
+        {!animate && (
           <div className="mt-10 flex flex-col items-center gap-6">
             <AdsDashboardToggle active={active} onChange={setActive} />
             <Button href="/about#contact" withArrow>
