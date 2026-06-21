@@ -2,7 +2,6 @@ import { Button } from "@/components/Button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { GlowAccent } from "@/components/Backgrounds";
 import { fadeUp } from "@/lib/motion";
-import { site } from "@/data/site";
 
 export function Cta() {
   return (
@@ -34,9 +33,6 @@ export function Cta() {
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
               <Button href="/about#contact" withArrow>
                 Get your listing media
-              </Button>
-              <Button href={`mailto:${site.email}`} variant="secondary">
-                {site.email}
               </Button>
             </div>
           </RevealItem>

@@ -22,13 +22,3 @@ export const education: Education[] = [
     period: "2015 — 2018",
   },
 ];
-
-export type Reference = {
-  name: string;
-  title: string;
-};
-
-export const references: Reference[] = [
-  { name: "Mr Tom Snelling", title: "General Manager, Hausples.com.pg" },
-  { name: "Todd Emanuelli", title: "CEO, 321 Group" },
-];

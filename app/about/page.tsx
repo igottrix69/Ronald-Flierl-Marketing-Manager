@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { Bio } from "@/sections/about/Bio";
 import { SkillsTools } from "@/sections/about/SkillsTools";
-import { EducationReferences } from "@/sections/about/EducationReferences";
+import { Education } from "@/sections/about/Education";
 import { Contact } from "@/sections/about/Contact";
+import { ScrollToHash } from "@/components/ScrollToHash";
 
 export const metadata: Metadata = {
   title: "About",
@@ -26,8 +27,9 @@ export default function AboutPage() {
       />
       <Bio />
       <SkillsTools />
-      <EducationReferences />
+      <Education />
       <Contact />
+      <ScrollToHash />
     </>
   );
 }

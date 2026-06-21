@@ -2,7 +2,6 @@ import { Button } from "@/components/Button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { GlowAccent } from "@/components/Backgrounds";
 import { fadeUp } from "@/lib/motion";
-import { site } from "@/data/site";
 
 export function FinalCTA() {
   return (
@@ -34,8 +33,8 @@ export function FinalCTA() {
               <Button href="/about#contact" withArrow>
                 Get in Touch
               </Button>
-              <Button href={`mailto:${site.email}`} variant="secondary">
-                {site.email}
+              <Button href="/work" variant="secondary">
+                View My Work
               </Button>
             </div>
           </RevealItem>

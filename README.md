@@ -12,8 +12,9 @@ Built to feel like a high-end agency portfolio: cinematic typography, smooth scr
 - **Lenis** — smooth scrolling (auto-disabled for `prefers-reduced-motion`)
 - **next/font** (Inter + Sora) and **next/image** for all imagery
 - **lucide-react** icons
+- **Resend** + **Zod** — server-side contact form delivery (`/app/api/contact`)
 
-No backend is required — the contact form falls back to the visitor's mail client via a `mailto:` link.
+The contact form posts to a Next.js API route that validates the payload (Zod) and emails it via Resend. The destination address lives in an environment variable, so it never ships to the browser.
 
 ## Project structure
 
@@ -45,7 +46,8 @@ All copy lives in `/data` — no text is hardcoded in components:
 | `data/timeline.ts` | Work-experience timeline |
 | `data/projects.ts` | Featured landing-page projects |
 | `data/skills.ts` | Skills list + tools/platforms |
-| `data/about.ts` | Bio, education, references |
+| `data/about.ts` | Bio and education |
+| `data/work.ts` | Work-page intro copy and services grid |
 | `data/clients.ts` | Client logos + official URLs |
 
 ## Theme system
@@ -55,9 +57,22 @@ All copy lives in `/data` — no text is hardcoded in components:
 - Preference persists in `localStorage` and respects `prefers-color-scheme` on first load.
 - An inline script in `<head>` sets the theme class before paint to avoid FOUC.
 
+## Contact form (environment variables)
+
+The contact form (`/app/api/contact/route.ts`) sends submissions via [Resend](https://resend.com). Copy `.env.example` to `.env.local` and fill in:
+
+| Variable | Required | Description |
+| --- | --- | --- |
+| `RESEND_API_KEY` | yes | API key from your Resend dashboard. |
+| `CONTACT_TO_EMAIL` | yes | Destination inbox for enquiries (never shipped to the browser). |
+| `CONTACT_FROM_EMAIL` | no | Verified Resend sender. Defaults to `onboarding@resend.dev` (fine for testing). |
+
+To go live, add the same variables in **Vercel → Project → Settings → Environment Variables** (Production), then redeploy. Until `RESEND_API_KEY` and `CONTACT_TO_EMAIL` are set, the form returns a friendly "not configured yet" error.
+
 ## Run locally
 
 ```bash
+cp .env.example .env.local   # then fill in the values
 npm install
 npm run dev          # http://localhost:3000
 ```
@@ -76,8 +91,7 @@ This project is zero-config on Vercel:
 
 1. Push the repo to GitHub.
 2. Import it at [vercel.com/new](https://vercel.com/new) (framework auto-detected as Next.js), **or** run `vercel --prod` from the project root with the Vercel CLI.
-
-No environment variables are required.
+3. Add the contact-form environment variables (see above) under Settings → Environment Variables.
 
 ---
 

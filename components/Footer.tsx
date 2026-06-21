@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone, Linkedin } from "lucide-react";
+import { MapPin, Linkedin } from "lucide-react";
 import { site, navLinks } from "@/data/site";
 import { clients } from "@/data/clients";
 import { LogoChip } from "./LogoChip";
@@ -16,25 +16,11 @@ export function Footer() {
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
             </div>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
-              {site.tagline}. Based in {site.location}. {site.availability}.
+              {site.tagline}. Specialising in high-ticket paid acquisition, CRO
+              and AI-powered marketing workflows for PNG&apos;s leading brands.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 text-sm">
-              <a
-                href={`mailto:${site.email}`}
-                className="inline-flex w-fit items-center gap-2.5 text-muted transition-colors hover:text-accent"
-              >
-                <Mail size={15} /> {site.email}
-              </a>
-              {site.phones.map((phone) => (
-                <a
-                  key={phone}
-                  href={`tel:${phone.replace(/\s/g, "")}`}
-                  className="inline-flex w-fit items-center gap-2.5 text-muted transition-colors hover:text-accent"
-                >
-                  <Phone size={15} /> {phone}
-                </a>
-              ))}
               <a
                 href={site.linkedin.href}
                 target="_blank"
@@ -44,8 +30,17 @@ export function Footer() {
                 <Linkedin size={15} /> {site.linkedin.label}
               </a>
               <span className="inline-flex w-fit items-center gap-2.5 text-muted">
-                <MapPin size={15} /> {site.location}
+                <MapPin size={15} /> {site.location} · {site.availability}
               </span>
+            </div>
+
+            <div className="mt-7">
+              <Link
+                href="/about#contact"
+                className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-glow-sm transition-all duration-300 hover:shadow-glow hover:brightness-110"
+              >
+                Let&apos;s Talk
+              </Link>
             </div>
           </div>
 

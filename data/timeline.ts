@@ -27,7 +27,7 @@ export const experience: Experience[] = [
     role: "Marketing Manager",
     company: "321 Group (321Lotto)",
     location: "Port Moresby, PNG",
-    period: "Dec 2024 — Apr 2025",
+    period: "2024 — 2025",
     summary:
       "Owned end-to-end digital for a B2C platform with 100,000+ monthly active users.",
     highlights: [
@@ -41,7 +41,7 @@ export const experience: Experience[] = [
     company: "Hausples.com.pg",
     meta: "PNG's #1 Property Portal · Digital Classifieds Group (DCG) Australasian network",
     location: "Port Moresby, PNG",
-    period: "Jan 2023 — Nov 2024",
+    period: "2023 — 2024",
     summary:
       "Led marketing for PNG's largest property portal, working with DCG CMO Salvatore Britti and CEO Matthew Care.",
     highlights: [

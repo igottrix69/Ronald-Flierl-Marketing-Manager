@@ -6,7 +6,7 @@ import { scaleIn } from "@/lib/motion";
 
 export function FeaturedProjects() {
   return (
-    <section className="py-16 sm:py-24">
+    <section id="featured-work" className="scroll-mt-28 py-16 sm:py-24">
       <div className="container-px">
         <SectionHeading
           eyebrow="Featured projects"
