@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AdsManagementShowcase } from "@/sections/ads/AdsManagementShowcase";
+import { SalesComparison } from "@/sections/ads/SalesComparison";
 import { Capabilities } from "@/sections/ads/Capabilities";
 import { Results } from "@/sections/ads/Results";
 import { Cta } from "@/sections/ads/Cta";
@@ -14,6 +15,7 @@ export default function AdsManagementPage() {
   return (
     <>
       <AdsManagementShowcase />
+      <SalesComparison />
       <Capabilities />
       <Results />
       <Cta />
